@@ -1,0 +1,24 @@
+﻿@using ArmToBicepOnlineConverter.Services
+
+<EditForm Model="@input" OnValidSubmit="@HandleValidSubmit">
+
+    <h3>ARM input</h3>
+    <InputTextArea @bind-Value="input" style="width: 100%; height: 40vh" /> 
+    <button type="submit" class="btn btn-primary">Convert to Bicep</button>
+
+    <h3 style="margin-top: 3rem;">Bicep output</h3>
+    <pre  style="border: 1px #ccc double; width:100%; height: 40vh">@output </pre>
+</EditForm>
+
+@code {
+    private string input = Constants.ExampleInput;
+
+    private string output = Constants.ExampleOutput;
+
+
+    private void HandleValidSubmit()
+    {
+        output = DecomipleArm.Decompile(input);
+        // Process the valid form
+    }
+}

@@ -1,0 +1,136 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+using System.Collections.Generic;
+using Bicep.Core.Analyzers.Linter;
+using Bicep.Core.Configuration;
+using Bicep.Core.Emit;
+using Bicep.Core.Extensions;
+using Bicep.Core.Features;
+using Bicep.Core.FileSystem;
+using Bicep.Core.Json;
+using Bicep.Core.Registry;
+using Bicep.Core.Semantics.Namespaces;
+using Bicep.Core.TypeSystem.Az;
+using Moq;
+using ConfigurationManager = Bicep.Core.Configuration.ConfigurationManager;
+using IOFileSystem = System.IO.Abstractions.FileSystem;
+
+namespace ArmToBicepOnlineConverter.Utility
+{
+    public static class BicepTestConstants
+    {
+        public const string DevAssemblyFileVersion = "dev";
+
+        public const string GeneratorTemplateHashPath = "metadata._generator.templateHash";
+
+        public static readonly FileResolver FileResolver = new();
+
+        public static readonly IFeatureProvider Features = CreateMockFeaturesProvider(registryEnabled: false, symbolicNameCodegenEnabled: false, importsEnabled: false, resourceTypedParamsAndOutputsEnabled: false, assemblyFileVersion: DevAssemblyFileVersion).Object;
+
+        public static readonly EmitterSettings EmitterSettings = new EmitterSettings(Features);
+
+        public static readonly EmitterSettings EmitterSettingsWithSymbolicNames = new EmitterSettings(
+            CreateMockFeaturesProvider(registryEnabled: false, symbolicNameCodegenEnabled: true, importsEnabled: false, resourceTypedParamsAndOutputsEnabled: false, assemblyFileVersion: DevAssemblyFileVersion).Object);
+
+        public static readonly IAzResourceTypeLoader AzResourceTypeLoader = new AzResourceTypeLoader();
+
+        public static readonly INamespaceProvider NamespaceProvider = TestTypeHelper.CreateWithAzTypes();
+
+        public static readonly IContainerRegistryClientFactory ClientFactory = new Mock<IContainerRegistryClientFactory>().Object;
+
+        public static readonly ITemplateSpecRepositoryFactory TemplateSpecRepositoryFactory = new Mock<ITemplateSpecRepositoryFactory>().Object;
+
+        public static readonly IModuleRegistryProvider RegistryProvider = new DefaultModuleRegistryProvider(FileResolver, ClientFactory, TemplateSpecRepositoryFactory, Features);
+
+        public static readonly IConfigurationManager ConfigurationManager = new ConfigurationManager(new IOFileSystem());
+
+        public static readonly RootConfiguration BuiltInConfiguration = ConfigurationManager.GetBuiltInConfiguration();
+
+        public static readonly LinterAnalyzer LinterAnalyzer = new LinterAnalyzer(BuiltInConfiguration);
+
+        public static readonly RootConfiguration BuiltInConfigurationWithAnalyzersDisabled = ConfigurationManager.GetBuiltInConfiguration(disableAnalyzers: true);
+
+        //public static readonly IModuleRestoreScheduler ModuleRestoreScheduler = CreateMockModuleRestoreScheduler();
+
+        //public static IFeatureProvider CreateFeaturesProvider(
+        //    TestContext testContext,
+        //    bool registryEnabled = false,
+        //    bool symbolicNameCodegenEnabled = false,
+        //    bool importsEnabled = false,
+        //    bool resourceTypedParamsAndOutputsEnabled = false,
+        //    string assemblyFileVersion = DevAssemblyFileVersion)
+        //{
+        //    var mock = CreateMockFeaturesProvider(
+        //        registryEnabled: registryEnabled,
+        //        symbolicNameCodegenEnabled: symbolicNameCodegenEnabled,
+        //        importsEnabled: importsEnabled,
+        //        resourceTypedParamsAndOutputsEnabled: resourceTypedParamsAndOutputsEnabled,
+        //        assemblyFileVersion: assemblyFileVersion);
+
+
+        //    return mock.Object;
+        //}
+
+        public static RootConfiguration CreateMockConfiguration(Dictionary<string, object>? customConfigurationData = null, string? configurationPath = null)
+        {
+            var configurationData = new Dictionary<string, object>
+            {
+                ["cloud.currentProfile"] = "AzureCloud",
+                ["cloud.profiles.AzureCloud.resourceManagerEndpoint"] = "https://example.invalid",
+                ["cloud.profiles.AzureCloud.activeDirectoryAuthority"] = "https://example.invalid",
+                ["cloud.credentialPrecedence"] = new[] { "AzureCLI", "AzurePowerShell" },
+                ["moduleAliases"] = new Dictionary<string, object>(),
+                ["analyzers"] = new Dictionary<string, object>(),
+            };
+
+            if (customConfigurationData is not null)
+            {
+                foreach (var (path, value) in customConfigurationData)
+                {
+                    configurationData[path] = value;
+                }
+            }
+
+            var element = JsonElementFactory.CreateElement("{}");
+
+            foreach (var (path, value) in configurationData)
+            {
+                element = element.SetPropertyByPath(path, value);
+            }
+
+            return RootConfiguration.Bind(element, configurationPath);
+        }
+
+        private static Mock<IFeatureProvider> CreateMockFeaturesProvider(
+            bool registryEnabled,
+            bool symbolicNameCodegenEnabled,
+            bool importsEnabled,
+            bool resourceTypedParamsAndOutputsEnabled,
+            string assemblyFileVersion)
+        {
+            var mock = new Mock<IFeatureProvider>();
+            mock.SetupGet(m => m.RegistryEnabled).Returns(registryEnabled);
+            mock.SetupGet(m => m.SymbolicNameCodegenEnabled).Returns(symbolicNameCodegenEnabled);
+            mock.SetupGet(m => m.ImportsEnabled).Returns(importsEnabled);
+            mock.SetupGet(m => m.AssemblyVersion).Returns(assemblyFileVersion);
+            mock.SetupGet(m => m.ResourceTypedParamsAndOutputsEnabled).Returns(resourceTypedParamsAndOutputsEnabled);
+
+            return mock;
+        }
+
+        //private static IModuleRestoreScheduler CreateMockModuleRestoreScheduler()
+        //{
+        //    var moduleDispatcher = StrictMock.Of<IModuleDispatcher>();
+        //    return new ModuleRestoreScheduler(moduleDispatcher.Object);
+        //}
+
+        //public static Mock<ITelemetryProvider> CreateMockTelemetryProvider()
+        //{
+        //    var telemetryProvider = StrictMock.Of<ITelemetryProvider>();
+        //    telemetryProvider.Setup(x => x.PostEvent(It.IsAny<BicepTelemetryEvent>()));
+
+        //    return telemetryProvider;
+        //}
+    }
+}

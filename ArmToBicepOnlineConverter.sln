@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArmToBicepOnlineConverter", "ArmToBicepOnlineConverter\ArmToBicepOnlineConverter.csproj", "{E68FA8EC-AE7E-41FA-936B-12A0AB8E987D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArmToBicepOnlineConverter.Tests", "ArmToBicepOnlineConverter.Tests\ArmToBicepOnlineConverter.Tests.csproj", "{2BE649E6-6135-409E-8153-4455DBF8F144}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E68FA8EC-AE7E-41FA-936B-12A0AB8E987D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E68FA8EC-AE7E-41FA-936B-12A0AB8E987D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E68FA8EC-AE7E-41FA-936B-12A0AB8E987D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E68FA8EC-AE7E-41FA-936B-12A0AB8E987D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BE649E6-6135-409E-8153-4455DBF8F144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BE649E6-6135-409E-8153-4455DBF8F144}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BE649E6-6135-409E-8153-4455DBF8F144}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BE649E6-6135-409E-8153-4455DBF8F144}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BAF3A1FD-732A-4F08-9893-FE1D65041F0B}
+	EndGlobalSection
+EndGlobal
