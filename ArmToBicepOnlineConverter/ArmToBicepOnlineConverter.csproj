@@ -4,13 +4,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+
+	<BlazorLinkOnBuild>false</BlazorLinkOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="bicep\**" />
-    <Content Remove="bicep\**" />
-    <EmbeddedResource Remove="bicep\**" />
-    <None Remove="bicep\**" />
+	  
   </ItemGroup>
 
   <ItemGroup>
