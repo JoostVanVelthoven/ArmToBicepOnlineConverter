@@ -8,10 +8,15 @@ namespace ArmToBicepOnlineConverter.Services
 {
     public static class DecomipleArm
     {
-      
+
 
         public static string Decompile(string template)
-        {
+        { 
+            if(String.IsNullOrWhiteSpace(template))
+            {
+                return "";
+            }
+
             try
             {
                 // replace newlines with the style passed in
@@ -28,9 +33,9 @@ namespace ArmToBicepOnlineConverter.Services
 
                 return filesToSave[entryPointUri];
             }
-            catch
+            catch(Exception ex)
             {
-                return "No valid input";
+                return "No valid input, " + ex.Message + ex.StackTrace;
             }
 
             

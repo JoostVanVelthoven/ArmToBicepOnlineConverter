@@ -8,14 +8,14 @@ namespace ArmToBicepOnlineConverter.Tests
         [TestMethod]
         public void Empty()
         {
-            Assert.AreEqual("No valid input", DecomipleArm.Decompile(""));
+            Assert.AreEqual("", DecomipleArm.Decompile(""));
 
         }
 
         [TestMethod]
         public void Trash()
         {
-            Assert.AreEqual("No valid input", DecomipleArm.Decompile("#$%^&*"));
+            Assert.IsTrue(DecomipleArm.Decompile("#$%^&*").Contains("No valid input"));
 
         }
 
