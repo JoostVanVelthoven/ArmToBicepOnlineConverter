@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
 	<BlazorWebAssemblyEnableLinking>false</BlazorWebAssemblyEnableLinking>
-	<MonoLinkerI18NAssemblies>all</MonoLinkerI18NAssemblies>
+	<PublishTrimmed>false</PublishTrimmed>
   </PropertyGroup>
 
   <ItemGroup>
