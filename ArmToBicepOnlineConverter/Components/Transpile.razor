@@ -4,7 +4,18 @@
 
     <h3>ARM input</h3>
     <InputTextArea @bind-Value="input" style="width: 100%; height: 40vh" /> 
-    <button type="submit" class="btn btn-primary">Convert to Bicep</button>
+    <button type="submit" class="btn btn-primary">
+        @if (isWorking)
+        {
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+
+        }
+        else
+        {
+            <span>Convert to Bicep</span>
+
+        }
+    </button>
 
     <h3 style="margin-top: 3rem;">Bicep output</h3>
     <pre  style="border: 1px #ccc double; width:100%; height: 40vh; padding: 1rem;">@output </pre>
@@ -15,10 +26,17 @@
 
     private string output = Constants.ExampleOutput;
 
+    private bool isWorking = false;
 
-    private void HandleValidSubmit()
+    private async void HandleValidSubmit()
     {
-        output = DecomipleArm.Decompile(input);
-        // Process the valid form
+        isWorking = true;
+        await Task.Delay(1);
+        await InvokeAsync(()=> StateHasChanged()); 
+
+        this.output = DecomipleArm.Decompile(input);
+        this.isWorking = false; 
+        await InvokeAsync(()=> StateHasChanged()); 
+   
     }
 }
