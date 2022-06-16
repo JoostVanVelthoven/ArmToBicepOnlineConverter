@@ -4,8 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <BlazorWebAssemblyEnableLinking>false</BlazorWebAssemblyEnableLinking>
-	<BlazorLinkOnBuild>false</BlazorLinkOnBuild>
+	<BlazorWebAssemblyEnableLinking>false</BlazorWebAssemblyEnableLinking>
+	<MonoLinkerI18NAssemblies>all</MonoLinkerI18NAssemblies>
   </PropertyGroup>
 
   <ItemGroup>

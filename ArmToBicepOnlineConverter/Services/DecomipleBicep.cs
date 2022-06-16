@@ -35,7 +35,7 @@ namespace ArmToBicepOnlineConverter.Services
             }
             catch(Exception ex)
             {
-                return "No valid input, " + ex.Message + ex.StackTrace;
+                return "No valid input, " + ex.Message + ex.StackTrace + ex.Source + (ex?.InnerException?.ToString());
             }
 
             
