@@ -1,11 +1,11 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArmToBicepOnlineConverter", "ArmToBicepOnlineConverter\ArmToBicepOnlineConverter.csproj", "{E68FA8EC-AE7E-41FA-936B-12A0AB8E987D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArmToBicepOnlineConverter.Tests", "ArmToBicepOnlineConverter.Tests\ArmToBicepOnlineConverter.Tests.csproj", "{2BE649E6-6135-409E-8153-4455DBF8F144}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArmToBicepOnlineConverter.Tests", "ArmToBicepOnlineConverter.Tests\ArmToBicepOnlineConverter.Tests.csproj", "{2BE649E6-6135-409E-8153-4455DBF8F144}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

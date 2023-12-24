@@ -14,6 +14,7 @@ using Bicep.Core.Semantics.Namespaces;
 using Bicep.Core.TypeSystem.Az;
 using Moq;
 using ConfigurationManager = Bicep.Core.Configuration.ConfigurationManager;
+using IConfigurationManager = Bicep.Core.Configuration.IConfigurationManager;
 using IOFileSystem = System.IO.Abstractions.FileSystem;
 
 namespace ArmToBicepOnlineConverter.Utility
@@ -50,27 +51,6 @@ namespace ArmToBicepOnlineConverter.Utility
         public static readonly LinterAnalyzer LinterAnalyzer = new LinterAnalyzer(BuiltInConfiguration);
 
         public static readonly RootConfiguration BuiltInConfigurationWithAnalyzersDisabled = ConfigurationManager.GetBuiltInConfiguration(disableAnalyzers: true);
-
-        //public static readonly IModuleRestoreScheduler ModuleRestoreScheduler = CreateMockModuleRestoreScheduler();
-
-        //public static IFeatureProvider CreateFeaturesProvider(
-        //    TestContext testContext,
-        //    bool registryEnabled = false,
-        //    bool symbolicNameCodegenEnabled = false,
-        //    bool importsEnabled = false,
-        //    bool resourceTypedParamsAndOutputsEnabled = false,
-        //    string assemblyFileVersion = DevAssemblyFileVersion)
-        //{
-        //    var mock = CreateMockFeaturesProvider(
-        //        registryEnabled: registryEnabled,
-        //        symbolicNameCodegenEnabled: symbolicNameCodegenEnabled,
-        //        importsEnabled: importsEnabled,
-        //        resourceTypedParamsAndOutputsEnabled: resourceTypedParamsAndOutputsEnabled,
-        //        assemblyFileVersion: assemblyFileVersion);
-
-
-        //    return mock.Object;
-        //}
 
         public static RootConfiguration CreateMockConfiguration(Dictionary<string, object>? customConfigurationData = null, string? configurationPath = null)
         {
