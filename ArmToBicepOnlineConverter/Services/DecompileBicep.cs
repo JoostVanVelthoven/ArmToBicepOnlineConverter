@@ -1,16 +1,11 @@
-﻿using ArmToBicepOnlineConverter.Utility;
-using Bicep.Core.FileSystem;
-using Bicep.Core.Registry;
-using Bicep.Decompiler;
-using System.Text.RegularExpressions;
+﻿using Bicep.Decompiler;
 
 namespace ArmToBicepOnlineConverter.Services
 {
-    public static class DecomipleArm
+    public class DecompileArm(BicepDecompiler bicepDecompiler)
     {
 
-
-        public static string Decompile(string template)
+        public async Task<string> Decompile(string template)
         { 
             if(String.IsNullOrWhiteSpace(template))
             {
@@ -19,19 +14,9 @@ namespace ArmToBicepOnlineConverter.Services
 
             try
             {
-                // replace newlines with the style passed in
-                template = string.Join(" ", Regex.Split(template, "\r?\n"));
-
-                var fileUri = new Uri("file:///path/to/main.json");
-                var fileResolver = new InMemoryFileResolver(new Dictionary<Uri, string>
-                {
-                    [fileUri] = template,
-                }); ;
-
-                var decompiler = new TemplateDecompiler(BicepTestConstants.Features, TestTypeHelper.CreateEmptyProvider(), fileResolver, new DefaultModuleRegistryProvider(fileResolver, BicepTestConstants.ClientFactory, BicepTestConstants.TemplateSpecRepositoryFactory, BicepTestConstants.Features), BicepTestConstants.ConfigurationManager);
-                var (entryPointUri, filesToSave) = decompiler.DecompileFileWithModules(fileUri, PathHelper.ChangeToBicepExtension(fileUri));
-
-                return filesToSave[entryPointUri];
+                var decompilation = await bicepDecompiler.Decompile(new Uri("file:///main.bicep"), template);
+             
+                return decompilation.FilesToSave.First().Value;
             }
             catch(Exception ex)
             {

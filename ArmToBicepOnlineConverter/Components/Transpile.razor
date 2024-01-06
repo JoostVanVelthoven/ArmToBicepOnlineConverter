@@ -1,5 +1,5 @@
 ﻿@using ArmToBicepOnlineConverter.Services
-
+@inject DecompileArm service
 <EditForm Model="@input" OnValidSubmit="@HandleValidSubmit">
 
     <h3>ARM input</h3>
@@ -34,8 +34,8 @@
         await Task.Delay(1);
         await InvokeAsync(()=> StateHasChanged()); 
 
-        this.output = DecomipleArm.Decompile(input);
-        this.isWorking = false; 
+        this.output = await service.Decompile(input);
+        isWorking = false; 
         await InvokeAsync(()=> StateHasChanged()); 
    
     }

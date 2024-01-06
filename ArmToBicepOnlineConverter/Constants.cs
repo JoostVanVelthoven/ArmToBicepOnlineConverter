@@ -1,10 +1,4 @@
-﻿using ArmToBicepOnlineConverter.Utility;
-using Bicep.Core.FileSystem;
-using Bicep.Core.Registry;
-using Bicep.Decompiler;
-using System.Text.RegularExpressions;
-
-namespace ArmToBicepOnlineConverter
+﻿namespace ArmToBicepOnlineConverter
 {
     public static class Constants
     {

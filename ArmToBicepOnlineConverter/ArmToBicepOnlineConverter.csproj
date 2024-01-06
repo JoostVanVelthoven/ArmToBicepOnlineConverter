@@ -1,18 +1,24 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <BlazorWebAssemblyEnableLinking>false</BlazorWebAssemblyEnableLinking>
-    <PublishTrimmed>false</PublishTrimmed>
-  </PropertyGroup>
-  <ItemGroup>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Azure.Bicep.Core" Version="0.7.4" />
-    <PackageReference Include="Azure.Bicep.Decompiler" Version="0.7.4" />
-    <PackageReference Include="Moq" Version="4.18.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<BlazorWebAssemblyEnableLinking>false</BlazorWebAssemblyEnableLinking>
+		<PublishTrimmed>false</PublishTrimmed>
+		
+	</PropertyGroup>
+	<ItemGroup>
+		<TrimmerRootAssembly Include="Azure.Bicep.Core" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Utility\" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Azure.Bicep.Core" Version="0.24.24" />
+		<PackageReference Include="Azure.Bicep.Decompiler" Version="0.24.24" />
+		<PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="20.0.4" />
+		<PackageReference Include="Moq" Version="4.20.70" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0" />
+	</ItemGroup>
 </Project>
