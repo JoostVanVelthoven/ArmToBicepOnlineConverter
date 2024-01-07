@@ -14,26 +14,32 @@
 </head>
 
 <body>
-    <div style=" top: 0; left: 0; height: 56px;width: 100%;box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2); text-align: center; display: flex; align-items: center;">
+
+
+
+    <div style=" top: 0; left: 0; height: 56px; width: 100%; box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2); text-align: center; display: flex; align-items: center; background-color: #efefef">
         <h1 style="font-size: 2rem; width: 100%; margin: 0;">Convert ARM to Bicep online </h1>
     </div>
+    <div style="margin: auto; max-width: 90%; width: 100rem;">
+        <div id="app" style="min-height: 70vh">
+            <div style="text-align: center; padding: 4vh">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only"></span>
+                </div>
+            </div>
+        </div>
 
-    <div id="app" style="min-height: 70vh">
-        <div style="text-align: center; padding: 4vh">Loading</div>
+
+        <script src="_framework/blazor.webassembly.js"></script>
+        <div style="text-align: center">
+
+            <hr />
+            Convert Azure resource manager (ARM) to Bicep online. The decompilation is done only in the browser.  No trackers, no ads
+
+            <br /><br />
+            <a href="https://github.com/joostVanVelthoven/armToBicepOnlineConverter" class="small">Fork on GitHub</a>
+        </div>
     </div>
-
-
-    <script src="_framework/blazor.webassembly.js"></script>
-    <div style="text-align: center">
-
-        <hr />
-        Convert Azure resource manager (ARM) to Bicep online. The decompilation is done only in the browser.  No trackers, no ads
-
-        <br /><br />
-        <a href="https://github.com/joostVanVelthoven/armToBicepOnlineConverter" class="small">Fork on GitHub</a>
-    </div>
-
-
 
 </body>
 
