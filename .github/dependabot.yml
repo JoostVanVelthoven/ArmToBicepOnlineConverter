@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: "dotnet"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      actions-deps:
+         patterns:
+            - "*"
+  - package-ecosystem: "dotnet-sdk"
+    directory: "/"
+    schedule:
+      interval: "monthly"
