@@ -13,11 +13,11 @@
     <Folder Include="Utility\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Azure.Bicep.Core" Version="0.24.24" />
-    <PackageReference Include="Azure.Bicep.Decompiler" Version="0.24.24" />
-    <PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="21.2.1" />
+    <PackageReference Include="Azure.Bicep.Core" Version="0.33.93" />
+    <PackageReference Include="Azure.Bicep.Decompiler" Version="0.33.93" />
+    <PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="21.3.1" />
     <PackageReference Include="Moq" Version="4.20.72" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.1" />
   </ItemGroup>
 </Project>
